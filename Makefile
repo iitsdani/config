@@ -44,7 +44,7 @@ system/teriyaki:
 	$(MAKE) darwin host=teriyaki
 
 system/prima:
-	$(MAKE) darwin host=prima
+	$(MAKE) darwin host=M-PA-KDW104J4R2
 
 # Nix -------------------------------------------------------------------------
 

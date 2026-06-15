@@ -32,7 +32,7 @@
   outputs = inputs@{ flake-utils, nixpkgs, ... }: {
     darwinConfigurations = {
       teriyaki = import ./machines/teriyaki inputs;
-      prima = import ./machines/M-PA-KDW104J4R2 inputs;
+      M-PA-KDW104J4R2 = import ./machines/M-PA-KDW104J4R2 inputs;
     };
   } // flake-utils.lib.eachDefaultSystem
     (system:
