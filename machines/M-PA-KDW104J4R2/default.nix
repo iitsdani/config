@@ -15,8 +15,8 @@ darwin.lib.darwinSystem {
     nix-colors.homeManagerModule
     ../../modules/system/nix-latest.nix
     ../../modules/system/fish.nix
-    ../../modules/darwin/machine-default.nix
     ../../modules/darwin/aerospace.nix
+    ./machine-defaults.nix
     ./homebrew.nix
     {
       system.primaryUser = "danilo.cianfrone";

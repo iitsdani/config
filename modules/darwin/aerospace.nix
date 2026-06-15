@@ -41,7 +41,7 @@ in
     # NOTE: the PATH environment variable passed to Aerospace doesn't contain
     # the paths where Nix adds soft-links to the current version executables.
     exec.inherit-env-vars = true;
-    exec.env-vars.PATH = "/etc/profiles/per-user/ar3s3ru/bin:\${PATH}";
+    exec.env-vars.PATH = lib.mkDefault "/etc/profiles/per-user/ar3s3ru/bin:\${PATH}";
 
     gaps = {
       outer.left = 20;
