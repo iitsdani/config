@@ -19,6 +19,13 @@
   # Use llm-agents for opencode.
   nixpkgs.overlays = [
     inputs.llm-agents.overlays.default
+    # FIXME(ar3s3ru): helm is broken on June 15th, fix was merged on June 12th but didn't
+    # land on nixos-unstable yet.
+    (final: prev: {
+      kubernetes-helm = prev.kubernetes-helm.overrideAttrs (_: {
+        doCheck = false;
+      });
+    })
   ];
 
   # FIXME: fish-completions is pulling in Python 2.7 but it breaks the build.

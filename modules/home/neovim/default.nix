@@ -33,6 +33,9 @@ in
     withRuby = false;
     withPython3 = false;
 
+    # NOTE(ar3s3ru): for some reason there is a pulled-in dependency for vimplugin-cmp-emoji which is unfree.
+    nixpkgs.config.allowUnfree = true;
+
     extraPlugins = with pkgs.vimPlugins; [
       themePlugin
       vim-nix

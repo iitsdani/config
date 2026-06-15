@@ -1,7 +1,7 @@
 ---
 keys:
   - &ar3s3ru C8DAE39DAA00FF97
-  - &polus-age age1luwssgv4vw2ccysxtm4umvdt6zj0uc84w0dl8vjuue5893m9ydhq8rl7tc
+  - &m-pa-kdw104j4r2-age age1rdvy0jjlkz9es20v63sxrhh6al9p2r3hdrwv374n7lujwhycvscqleu4je
   - &teriyaki-age age1rkmm47m39tnds8texv7zalhsl6g0s24qctag4hd0w68s9srwcfcqtnlexa
 creation_rules:
   - path_regex: "machines/.*/secrets.yaml"
@@ -9,7 +9,7 @@ creation_rules:
       - pgp:
           - *ar3s3ru
         age:
-          - *polus-age
+          - *m-pa-kdw104j4r2-age
           - *teriyaki-age
   - path_regex: ".*.enc.json"
     key_groups: *all-machines

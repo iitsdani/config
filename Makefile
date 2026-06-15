@@ -43,6 +43,9 @@ darwin:
 system/teriyaki:
 	$(MAKE) darwin host=teriyaki
 
+system/prima:
+	$(MAKE) darwin host=prima
+
 # Nix -------------------------------------------------------------------------
 
 flake.update:
