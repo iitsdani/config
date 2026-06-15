@@ -1,7 +1,7 @@
 { lib, pkgs, inputs, config, ... }:
 
 {
-  home.username = "ar3s3ru";
+  home.username = lib.mkDefault "ar3s3ru";
   home.stateVersion = lib.mkDefault "22.05";
 
   nixpkgs.config.allowUnfree = true;

@@ -19,8 +19,11 @@ darwin.lib.darwinSystem {
     ../../modules/darwin/aerospace.nix
     ./homebrew.nix
     {
-      system.primaryUser = "ar3s3ru";
+      system.primaryUser = "danilo.cianfrone";
       sops.defaultSopsFile = ./secrets.yaml;
+
+      # Not sure why this is necessary...
+      ids.gids.nixbld = 350;
 
       home-manager.sharedModules = [
         sops-nix.homeManagerModules.sops
@@ -29,10 +32,10 @@ darwin.lib.darwinSystem {
 
       home-manager.useGlobalPkgs = false;
       home-manager.useUserPackages = true;
-      home-manager.users.ar3s3ru = {
+      home-manager.users."danilo.cianfrone" = {
         imports = [
           ../../modules/home/opencode
-          ./user-ar3s3ru.nix
+          ./user-danilocianfrone.nix
         ];
 
         # NOTE: if the creation of secrets doesn't work, check

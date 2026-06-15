@@ -8,6 +8,8 @@ in
     ../../users/ar3s3ru.nix
   ];
 
+  home.username = lib.mkForce "danilo.cianfrone";
+
   programs.alacritty.settings.font.normal.family = font;
 
   programs.vscode.profiles.default.userSettings = {
