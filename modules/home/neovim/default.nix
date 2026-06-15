@@ -78,6 +78,19 @@ in
         folding = { enabled = false },
       })
 
+      -- Disable all indent logic for Kotlin; treesitter indent is buggy
+      -- and LSP onTypeFormatting doesn't work reliably. Fall back to
+      -- simple autoindent (copy indent from previous line).
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "kotlin",
+        callback = function()
+          vim.bo.indentexpr = ""
+          vim.bo.autoindent = true
+          vim.bo.cindent = false
+          vim.bo.smartindent = false
+        end,
+      })
+
       -- Format-on-save for Kotlin via :KotlinFormat (kotlin.nvim wraps the
       -- server's IDEA-style formatter). conform-nvim has no LSP-command
       -- formatter, so we hook BufWritePre directly.
@@ -101,6 +114,7 @@ in
       termguicolors = true;
       guifont = "VictorMono Nerd Font:h10";
       undofile = true;
+      autoindent = true;
       smartindent = false;
       tabstop = 2;
       shiftwidth = 2;
@@ -316,9 +330,11 @@ in
 
     plugins = {
       opencode.enable = true;
-
       web-devicons.enable = true;
       lualine.enable = true;
+      gitsigns.enable = true;
+      indent-blankline.enable = true;
+
       nvim-tree = {
         enable = true;
         settings = {
@@ -334,7 +350,7 @@ in
           filters.git_ignored = false; # show gitignored files
         };
       };
-      indent-blankline.enable = true;
+
       telescope = {
         enable = true;
         settings.pickers = {
