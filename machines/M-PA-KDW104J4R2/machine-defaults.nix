@@ -53,7 +53,7 @@
 
   users.users."danilo.cianfrone" = {
     home = "/Users/danilo.cianfrone";
-    shell = "${pkgs.fish}/bin/fish";
+    shell = pkgs.fish;
   };
 
   # NOTE: overrides various paths that points to non-valid ar3s3ru profile.
@@ -63,13 +63,6 @@
   environment.variables = {
     EDITOR = "nvim";
   };
-
-  # TODO enable
-  # system.defaults.NSGlobalDomain = {
-  #   InitialKeyRepeat = 33; # unit is 15ms, so 500ms
-  #   KeyRepeat = 2; # unit is 15ms, so 30ms
-  #   NSDocumentSaveNewDocumentsToCloud = false;
-  # };
 
   fonts.packages = with pkgs; [
     nerd-fonts.meslo-lg
