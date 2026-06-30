@@ -109,6 +109,8 @@ in
 
     globals.mapleader = " ";
 
+    editorconfig.enable = true;
+
     opts = {
       autoread = true;
       lazyredraw = true;
@@ -337,7 +339,6 @@ in
       lualine.enable = true;
       gitsigns.enable = true;
       indent-blankline.enable = true;
-
       nvim-tree = {
         enable = true;
         settings = {
