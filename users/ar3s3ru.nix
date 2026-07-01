@@ -47,6 +47,7 @@
     ../modules/home/direnv.nix
     ../modules/home/fish.nix
     ../modules/home/git.nix
+    ../modules/home/python.nix
     ../modules/home/ssh.nix
     ../modules/home/vscode.nix
   ];

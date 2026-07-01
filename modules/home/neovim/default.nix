@@ -31,7 +31,7 @@ in
     viAlias = false;
     vimAlias = true;
     withRuby = false;
-    withPython3 = false;
+    withPython3 = true;
 
     # NOTE(ar3s3ru): for some reason there is a pulled-in dependency for vimplugin-cmp-emoji which is unfree.
     nixpkgs.config.allowUnfree = true;
@@ -414,6 +414,7 @@ in
             css = [ "prettier" ];
             markdown = [ "prettier" ];
             toml = [ "prettier" ];
+            python = [ "ruff_format" ];
             proto = [ "buf" ];
             terraform = [ "tofu_fmt" ];
             "terraform-vars" = [ "tofu_fmt" ];
@@ -431,6 +432,7 @@ in
         lintersByFt = {
           sh = [ "shellcheck" ];
           bash = [ "shellcheck" ];
+          python = [ "ruff" ];
           proto = [ "buf_lint" ];
           terraform = [ "tflint" ];
           "terraform-vars" = [ "tflint" ];
@@ -444,6 +446,14 @@ in
         servers = {
           gopls.enable = true;
           buf_ls.enable = true;
+          pyright = {
+            enable = true;
+            package = pkgs.pyright;
+          };
+          ruff = {
+            enable = true;
+            package = pkgs.ruff;
+          };
           # Kotlin LSP is configured via kotlin.nvim (see extraConfigLua),
           # not via nixvim's plugins.lsp.servers — the plugin spawns its
           # own `kotlin_ls` client with the workspace/configuration handler
@@ -490,7 +500,7 @@ in
           "gD" = "declaration";
         };
         onAttach = ''
-          if client.name == "ts_ls" then
+          if client.name == "ts_ls" or client.name == "pyright" or client.name == "ruff" then
             client.server_capabilities.documentFormattingProvider = false
             client.server_capabilities.documentRangeFormattingProvider = false
           end
