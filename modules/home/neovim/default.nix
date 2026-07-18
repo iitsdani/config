@@ -454,6 +454,16 @@ in
             enable = true;
             package = pkgs.ruff;
           };
+          elixirls = {
+            enable = true;
+            package = pkgs.beamPackages.elixir-ls.override {
+              elixir = pkgs.beamPackages.elixir_1_19;
+            };
+            settings.elixirLS = {
+              dialyzerEnabled = true;
+              fetchDeps = false;
+            };
+          };
           # Kotlin LSP is configured via kotlin.nvim (see extraConfigLua),
           # not via nixvim's plugins.lsp.servers — the plugin spawns its
           # own `kotlin_ls` client with the workspace/configuration handler
