@@ -18,7 +18,7 @@
 
   # Use llm-agents for opencode.
   nixpkgs.overlays = [
-    inputs.llm-agents.overlays.default
+    inputs.llm-agents.overlays.shared-nixpkgs
     # FIXME(ar3s3ru): helm is broken on June 15th, fix was merged on June 12th but didn't
     # land on nixos-unstable yet.
     (final: prev: {

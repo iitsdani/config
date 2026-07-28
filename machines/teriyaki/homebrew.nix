@@ -21,6 +21,7 @@
       "dbeaver-community"
       "whatsapp"
       "stats"
+      "wireshark-app"
     ];
   };
 }
