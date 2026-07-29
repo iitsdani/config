@@ -14,7 +14,10 @@
     };
 
     brews = [
+      "awscli"
       "docker"
+      "docker-compose"
+      "docker-credential-helper-ecr"
     ];
 
     casks = [

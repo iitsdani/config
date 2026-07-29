@@ -57,6 +57,23 @@
     gpg.enable = true;
   };
 
+  home.activation.configureDockerComposePlugin = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    docker_config="$HOME/.docker/config.json"
+    if [ -z "$DRY_RUN_CMD" ]; then
+      mkdir -p "$HOME/.docker"
+      if [ -f "$docker_config" ]; then
+        ${pkgs.jq}/bin/jq --arg plugin_dir "/opt/homebrew/lib/docker/cli-plugins" \
+          '.cliPluginsExtraDirs = ((.cliPluginsExtraDirs // []) + [$plugin_dir] | unique)' \
+          "$docker_config" > "$docker_config.tmp"
+        mv "$docker_config.tmp" "$docker_config"
+      else
+        ${pkgs.jq}/bin/jq -n \
+          --arg plugin_dir "/opt/homebrew/lib/docker/cli-plugins" \
+          '{ cliPluginsExtraDirs: [$plugin_dir] }' > "$docker_config"
+      fi
+    fi
+  '';
+
   home.packages = with pkgs; [
     dig
     jq
