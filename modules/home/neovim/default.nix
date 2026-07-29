@@ -43,6 +43,7 @@ in
       vim-better-whitespace
       vim-vsnip
       markdown-preview-nvim
+      git-link-nvim
       kotlinNvim
     ];
 
@@ -201,6 +202,32 @@ in
       { mode = "n"; key = "<leader>mp"; action = "<cmd>MarkdownPreview<CR>"; options.desc = "Markdown preview start"; }
       { mode = "n"; key = "<leader>ms"; action = "<cmd>MarkdownPreviewStop<CR>"; options.desc = "Markdown preview stop"; }
       { mode = "n"; key = "<leader>mt"; action = "<cmd>MarkdownPreviewToggle<CR>"; options.desc = "Markdown preview toggle"; }
+
+      # git-link.nvim
+      {
+        mode = [ "n" "x" ];
+        key = "<leader>glu";
+        action.__raw = ''function() require("git-link.main").copy_line_url() end'';
+        options.desc = "Copy code link to clipboard";
+      }
+      {
+        mode = [ "n" "x" ];
+        key = "<leader>glo";
+        action.__raw = ''function() require("git-link.main").open_line_url() end'';
+        options.desc = "Open code link in browser";
+      }
+      {
+        mode = [ "n" "x" ];
+        key = "<leader>glp";
+        action.__raw = ''function() require("git-link.main").copy_permalink() end'';
+        options.desc = "Copy code permalink to clipboard";
+      }
+      {
+        mode = [ "n" "x" ];
+        key = "<leader>glP";
+        action.__raw = ''function() require("git-link.main").open_permalink() end'';
+        options.desc = "Open code permalink in browser";
+      }
 
       # Diagnostic navigation (LSP errors/warnings)
       {
