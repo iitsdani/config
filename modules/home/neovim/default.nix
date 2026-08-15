@@ -7,6 +7,7 @@ let
   themePlugin = vimThemeFromScheme { scheme = colorscheme; };
   kotlinLsp = pkgs.callPackage ./kotlin-lsp.nix { };
   kotlinNvim = pkgs.callPackage ./kotlin-nvim.nix { };
+  gitLinkNvim = pkgs.callPackage ./git-link-nvim.nix { };
 in
 {
   home.packages = with pkgs; [
@@ -43,7 +44,7 @@ in
       vim-better-whitespace
       vim-vsnip
       markdown-preview-nvim
-      git-link-nvim
+      gitLinkNvim
       kotlinNvim
     ];
 
@@ -476,6 +477,16 @@ in
           pyright = {
             enable = true;
             package = pkgs.pyright;
+            extraOptions.root_dir.__raw = ''
+              function(bufnr, on_dir)
+                local root = vim.fs.root(bufnr, "uv.lock")
+                if root then
+                  on_dir(root)
+                  return
+                end
+                on_dir(vim.fs.root(bufnr, { "pyrightconfig.json", "pyproject.toml", ".git" }))
+              end
+            '';
           };
           ruff = {
             enable = true;
