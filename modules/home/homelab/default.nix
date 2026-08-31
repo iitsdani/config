@@ -1,5 +1,7 @@
-{ config, pkgs, ... }:
-
+{ config, lib, pkgs, ... }:
+let
+  homePath = x: "${config.home.homeDirectory}/${x}";
+in
 {
   home.file."kubeconfig" = {
     executable = false;
@@ -8,7 +10,10 @@
   };
 
   home.sessionVariables = {
-    KUBECONFIG = ".kube/config:${config.home.file."kubeconfig".target}";
+    KUBECONFIG = lib.concatStringsSep ":" (map homePath [
+      ".kube/config"
+      config.home.file."kubeconfig".target
+    ]);
   };
 
   home.packages = with pkgs; [
