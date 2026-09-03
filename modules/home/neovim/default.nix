@@ -379,15 +379,24 @@ in
             group_empty = true; # collapse chains of single-child folders (e.g. src/java/main/com/example)
             indent_markers.enable = true; # show indent guides for clarity with collapsed chains
           };
-          filters.git_ignored = false; # show gitignored files
+          filesystem_watchers = {
+            enable = true;
+            ignore_dirs = [ "/node_modules" ];
+          };
+          filters = {
+            custom = [ "^\\.git$" ];
+            git_ignored = false; # show gitignored files
+          };
         };
       };
 
       telescope = {
         enable = true;
         settings.pickers = {
-          find_files.follow = true;
-          live_grep.additional_args = [ "-L" ];
+          find_files = {
+            find_command = [ "rg" "--files" "--color" "never" "--hidden" "-L" "--glob" "!.git/**" ];
+          };
+          live_grep.additional_args = [ "-L" "--hidden" "--glob" "!.git/**" ];
         };
       };
 
