@@ -1,29 +1,34 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "mcp": {
-    "atlassian": {
+    "databricks-italy": {
       "type": "remote",
-      "url": "https://mcp.atlassian.com/v1/mcp"
+      "url": "https://prima-databricks-italy.cloud.databricks.com/api/2.0/mcp/sql",
+      "oauth": false,
+      "headers": {
+        "Authorization": "Bearer {file:~/.local/share/opencode/databricks-it}"
+      }
     },
-    "terraform": {
-      "type": "local",
-      "command": [
-        "docker",
-        "run",
-        "-i",
-        "--rm",
-        "-e",
-        "TFE_TOKEN={file:~/.local/share/opencode/terraform-tfe-token}",
-        "hashicorp/terraform-mcp-server:0.5.1"
-      ]
+    "databricks-uk": {
+      "type": "remote",
+      "url": "https://prima-databricks-uk.cloud.databricks.com/api/2.0/mcp/sql",
+      "oauth": false,
+      "headers": {
+        "Authorization": "Bearer {file:~/.local/share/opencode/databricks-uk}"
+      }
+    },
+    "youtrack": {
+      "type": "remote",
+      "url": "https://prima-assicurazioni-spa.myjetbrains.com/mcp",
+      "oauth": false,
+      "headers": {
+        "Authorization": "Bearer {file:~/.local/share/opencode/youtrack}"
+      },
+      "enabled": true
     },
     "datadog": {
       "type": "remote",
       "url": "https://mcp.datadoghq.eu/api/unstable/mcp-server/mcp"
-    },
-    "incident-io": {
-      "type": "remote",
-      "url": "https://mcp.incident.io/mcp"
     },
     "github": {
       "type": "remote",
@@ -31,10 +36,6 @@
       "headers": {
         "Authorization": "Bearer {file:~/.local/share/opencode/github-token}"
       }
-    },
-    "miro": {
-      "type": "remote",
-      "url": "https://mcp.miro.com/"
     },
     "notion": {
       "type": "remote",

@@ -17,10 +17,22 @@
     path = "${config.home.homeDirectory}/.local/share/opencode/github-token";
   };
 
-  sops.secrets.terraform-token = {
+  sops.secrets.databricks-it = {
     mode = "0400";
     sopsFile = ./credentials.enc.json;
-    path = "${config.home.homeDirectory}/.local/share/opencode/terraform-tfe-token";
+    path = "${config.home.homeDirectory}/.local/share/opencode/databricks-it";
+  };
+
+  sops.secrets.databricks-uk = {
+    mode = "0400";
+    sopsFile = ./credentials.enc.json;
+    path = "${config.home.homeDirectory}/.local/share/opencode/databricks-uk";
+  };
+
+  sops.secrets.youtrack = {
+    mode = "0400";
+    sopsFile = ./credentials.enc.json;
+    path = "${config.home.homeDirectory}/.local/share/opencode/youtrack";
   };
 
   home.file."opencode-json" = {
