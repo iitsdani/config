@@ -24,7 +24,6 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.bo.softtabstop = 4
         vim.bo.expandtab = false
         vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
-        vim.treesitter.query.disable("go", "indents")
     end,
 })
 

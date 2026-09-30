@@ -1,15 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = [ pkgs.llm-agents.opencode ];
+  # NOTE: access tokens for models should be managed manually
+  # with the machine that is using it.
+  #
+  # For MCP servers for now it's ok to share tokens.
 
-  sops.secrets.opencode-auth-json = {
-    mode = "0600";
-    format = "json";
-    key = ""; # Entire file!
-    sopsFile = ./auth.enc.json;
-    path = "${config.home.homeDirectory}/.local/share/opencode/auth.json";
-  };
+  home.packages = [ pkgs.llm-agents.opencode ];
 
   sops.secrets.github-token = {
     mode = "0400";

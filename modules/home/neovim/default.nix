@@ -428,8 +428,9 @@ in
 
       treesitter = {
         enable = true;
-        settings.highlight.enable = true;
-        settings.indent.enable = true;
+        highlight.enable = true;
+        indent.enable = true;
+        indent.disable = [ "go" ];
         folding.enable = false;
       };
 

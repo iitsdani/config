@@ -83,7 +83,7 @@
     hugo # For my website.
     grpcurl
     # LaTeX and TexLive
-    texlive.combined.scheme-basic
+    texliveSmall
     yt-dlp
   ];
 }
