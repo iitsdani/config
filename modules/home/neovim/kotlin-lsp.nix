@@ -9,17 +9,17 @@
 }:
 
 let
-  version = "262.4739.0";
+  version = "263.7084.0";
 
   # Pre-built archives by system. nix-prefetch-url to refresh hashes.
   sources = {
     "aarch64-darwin" = {
-      url = "https://download-cdn.jetbrains.com/kotlin-lsp/${version}/kotlin-server-${version}-aarch64.sit";
-      hash = "sha256-G3RXQ84irZJoGhvDsQRoA+lCpuHzbgT7ha6aQDNKLx4=";
+      url = "https://download.jetbrains.com/language-server/kotlin-server/${version}/kotlin-server-${version}-aarch64.sit";
+      hash = "sha256-tAO/ilS9RY47pnMc+KuzNAvgi0OcA1dt/AKxP682lLg=";
     };
     "x86_64-darwin" = {
-      url = "https://download-cdn.jetbrains.com/kotlin-lsp/${version}/kotlin-server-${version}.sit";
-      hash = "sha256-bwbv56EPlLnIoCjE7+tsfhdp9HoB7ft0RQrPMKtWZeQ=";
+      url = "https://download.jetbrains.com/language-server/kotlin-server/${version}/kotlin-server-${version}.sit";
+      hash = "sha256-spw5Ol5UEVPQPWJueUYmhDfjWKZnpfkUoSbbtAB2ZLE=";
     };
   };
 
