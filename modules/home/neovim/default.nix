@@ -34,6 +34,9 @@ in
     withRuby = false;
     withPython3 = true;
 
+    # Prefer the project's devshell Go toolchain over Nixvim's bundled version.
+    dependencies.go.packageFallback = true;
+
     # NOTE(ar3s3ru): for some reason there is a pulled-in dependency for vimplugin-cmp-emoji which is unfree.
     nixpkgs.config.allowUnfree = true;
 
