@@ -16,6 +16,9 @@
   ];
 
   programs.fish.enable = true;
+  programs.fish.shellInit = ''
+    set -g grc_plugin_ignore_execs env
+  '';
   programs.fish.shellAliases = {
     cat = "bat";
     du = "duf";

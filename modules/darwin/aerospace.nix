@@ -1,5 +1,12 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 let
+  mod = "alt";
+
+  left = "j";
+  bottom = "k";
+  top = "i";
+  right = "l";
+
   workspaces = {
     "0" = "slack";
     "1" = "term";
@@ -29,6 +36,8 @@ in
 {
   services.aerospace.enable = true;
   services.aerospace.settings = {
+    config-version = 2;
+    persistent-workspaces = builtins.attrValues workspaces;
     # start-at-login = true;
     key-mapping.preset = "qwerty";
 
@@ -37,6 +46,7 @@ in
     enable-normalization-opposite-orientation-for-nested-containers = false;
 
     on-focused-monitor-changed = [ "move-mouse monitor-lazy-center" ];
+    focus-follows-mouse.enabled = true;
 
     # NOTE: the PATH environment variable passed to Aerospace doesn't contain
     # the paths where Nix adds soft-links to the current version executables.
@@ -63,20 +73,16 @@ in
       app-monitors-assignments;
 
     mode.main.binding =
-      let
-        mod = "alt";
-        left = "j";
-        bottom = "k";
-        top = "i";
-        right = "l";
-      in
       {
-        "${mod}-enter" = [ "exec-and-forget alacritty" ];
+        "${mod}-enter" = [ "exec-and-forget /usr/bin/open -na ${pkgs.ghostty-bin}/Applications/Ghostty.app" ];
 
         "${mod}-b" = "split horizontal";
         "${mod}-v" = "split vertical";
+        "${mod}-e" = "layout tiles horizontal vertical";
         "${mod}-f" = "fullscreen";
         "${mod}-shift-space" = "layout floating tiling";
+        "${mod}-shift-q" = "close";
+        "${mod}-r" = "mode resize";
 
         "${mod}-${left}" = "focus --boundaries-action wrap-around-the-workspace left";
         "${mod}-${bottom}" = "focus --boundaries-action wrap-around-the-workspace down";
@@ -89,6 +95,7 @@ in
         "${mod}-shift-${right}" = "move right";
 
         "${mod}-c" = "reload-config";
+        "${mod}-shift-c" = "reload-config && run-callback --for-every-window on-window-detected";
       } // lib.attrsets.foldlAttrs
         (acc: num: name: acc // {
           "${mod}-${num}" = "workspace ${name}";
@@ -96,6 +103,19 @@ in
         })
         { }
         workspaces;
+
+    mode.resize.binding = {
+      "${left}" = "resize width -50";
+      "${bottom}" = "resize height +50";
+      "${top}" = "resize height -50";
+      "${right}" = "resize width +50";
+      left = "resize width -50";
+      down = "resize height +50";
+      up = "resize height -50";
+      right = "resize width +50";
+      esc = "mode main";
+      enter = "mode main";
+      "${mod}-r" = "mode main";
+    };
   };
 }
-

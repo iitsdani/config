@@ -1,10 +1,8 @@
-{ config, pkgs, libs, ... }:
-
 {
   programs.fish.enable = true;
 
   programs.fish.interactiveShellInit = ''
-    devenv hook fish | source
+    devenv hook fish -- --no-tui --no-reload | source
   '';
 
   programs.fish.shellAbbrs = {
