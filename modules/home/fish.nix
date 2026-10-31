@@ -3,6 +3,10 @@
 {
   programs.fish.enable = true;
 
+  programs.fish.interactiveShellInit = ''
+    devenv hook fish | source
+  '';
+
   programs.fish.shellAbbrs = {
     gp = "git push";
     gpf = "git push --force-with-lease";

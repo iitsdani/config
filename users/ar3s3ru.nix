@@ -86,5 +86,6 @@
     # LaTeX and TexLive
     texliveSmall
     yt-dlp
+    devenv
   ];
 }
